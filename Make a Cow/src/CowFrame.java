@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.Random;
-
 import javax.swing.JFrame;
 
 public class CowFrame extends JFrame {
