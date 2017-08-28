@@ -10,7 +10,7 @@ public class Main {
 	public String stars(int n) {
 		String a = "";
 		for(int i=0; i<n; i++) {
-			for(int j=0; j<n; j++) a += "*";
+			for(int j=0; j<=i; j++) a += "*";
 			a += "\n";
 		}
 		return a;
@@ -27,6 +27,6 @@ public class Main {
 	 */
 	public static void main(String args[]) {
 		Main m = new Main();
-		System.out.println(m.coins(6));
+		System.out.println(m.stars(6));
 	}
 }

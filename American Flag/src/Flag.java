@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.math.*;
 
 public class Flag extends JPanel {
 	private final int sx = 50;
