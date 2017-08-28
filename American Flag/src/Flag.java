@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.lang.*;
 
 public class Flag extends JPanel {
 	private final int sx = 50;
@@ -31,8 +32,32 @@ public class Flag extends JPanel {
 		int h = (int) hlen;
 		g.drawRect(sx, sy, (int)(h*1.9), h); //Main Rectangle (for guidance)
 		g.drawRect((int)(sx+h*1.9-10), sy+h-10, 20, 20); //Corner target area
+		drawStar(g, 100, 100, 50);
 		for(int i=0;i<13;i++) {
 			
+		}
+	}
+	/*
+	 * Draws a star
+	 * @param Graphics, cx, cy = center x, center y coordinate. 
+	 * 		  or, ir = outer radius, inner radius
+	 * @return none, but draws on screen
+	 */
+	public void drawStar(Graphics g, int cx, int cy, int or) {
+		double offset = 3*Math.PI/10;
+		int ir = (int) (or/Math.sin(offset)*Math.sin(Math.PI/5+offset));
+		int px = (int) (Math.cos(offset)*or) + cx;
+		int py = (int) (Math.sin(offset)*or) + cy;
+		int cr;
+		int fx, fy;
+		for(int i=0; i<11 ; i++) {
+			if(i%2 == 1) cr = ir;
+			else cr = or;
+			fx = (int) (Math.cos(i*Math.PI/5+offset)*cr) + cx;
+			fy = (int) (Math.sin(i*Math.PI/5+offset)*cr) + cy;
+			g.drawLine(px, py, fx, fy);
+			px = fx;
+			py = fy;
 		}
 	}
 	
