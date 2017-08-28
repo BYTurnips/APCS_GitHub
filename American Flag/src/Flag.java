@@ -113,4 +113,3 @@ public class Flag extends JPanel {
 		jFrame.setVisible(true);
 	}
 }
-
