@@ -3,6 +3,8 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.lang.*;
+import java.util.*;
+import java.util.List;
 
 public class Flag extends JPanel {
 	private final int sx = 50;
@@ -30,35 +32,70 @@ public class Flag extends JPanel {
 	 */
 	public void paint (Graphics g) {
 		int h = (int) hlen;
+		int w = (int) (hlen*1.9);
+		int uh = (int) (hlen*7/13);
+		int uw = (int) (hlen*0.76);
+		//int vd = (int) (hlen*0.054);
+		//int hd = (int) (hlen*0.063);
+		int sd = (int) (hlen*0.0616);
 		g.drawRect(sx, sy, (int)(h*1.9), h); //Main Rectangle (for guidance)
 		g.drawRect((int)(sx+h*1.9-10), sy+h-10, 20, 20); //Corner target area
-		drawStar(g, 100, 100, 50);
+		Color fill;
 		for(int i=0;i<13;i++) {
-			
+			if(i%2 == 0) fill = Color.RED;
+			else fill = Color.WHITE;
+			drawOutRect(g, sx, (int) (sy+i*hlen/13), w, (int) (hlen/13), fill);
+		}
+		drawOutRect(g, sx, sy, uw, uh, Color.BLUE);
+		for(int i=1; i<=9; i++) {
+			if(i%2 == 1) {
+				for(int j=1; j<=11; j+=2) {
+					drawStar(g, (int) (j*hlen*0.063)+sx, (int) (i*hlen*0.054)+sy, sd/2);
+				}
+			}
+			else {
+				for(int j=2; j<=10; j+=2) {
+					drawStar(g, (int) (j*hlen*0.063)+sx, (int) (i*hlen*0.054)+sy, sd/2);
+				}
+			}
 		}
 	}
 	/*
-	 * Draws a star
+	 * Outlines and fills a rectangle with a color (0 = R, 1 = W, 2 = B)
+	 * @param Graphics object and parameters for the rectangle including fill color
+	 * @return none, but draws on screen
+	 */
+	public void drawOutRect(Graphics g, int x, int y, int w, int h, Color c) {
+		g.setColor(Color.BLACK);
+		g.drawRect(x, y, w, h);
+		g.setColor(c);
+		g.fillRect(x, y, w, h);
+	}
+	/*
+	 * Draws and fills a star
 	 * @param Graphics, cx, cy = center x, center y coordinate. 
 	 * 		  or, ir = outer radius, inner radius
 	 * @return none, but draws on screen
 	 */
 	public void drawStar(Graphics g, int cx, int cy, int or) {
-		double offset = 3*Math.PI/10;
-		int ir = (int) (or/Math.sin(offset)*Math.sin(Math.PI/5+offset));
-		int px = (int) (Math.cos(offset)*or) + cx;
-		int py = (int) (Math.sin(offset)*or) + cy;
+		int sides = 10;
+		int xcor[] = new int[sides];
+		int ycor[] = new int[sides];
+		double offset = Math.PI/sides;
+		int ir = (int) ((or*Math.sin(offset)/Math.sin(Math.PI*2/sides+offset)));
+		int px = (int) (Math.cos(offset)*ir) + cx;
+		int py = (int) (Math.sin(offset)*ir) + cy;
 		int cr;
 		int fx, fy;
-		for(int i=0; i<11 ; i++) {
-			if(i%2 == 1) cr = ir;
+		for(int i=0; i<10 ; i++) {
+			if(i%2 == 0) cr = ir;
 			else cr = or;
-			fx = (int) (Math.cos(i*Math.PI/5+offset)*cr) + cx;
-			fy = (int) (Math.sin(i*Math.PI/5+offset)*cr) + cy;
-			g.drawLine(px, py, fx, fy);
-			px = fx;
-			py = fy;
+			xcor[i] = ((int) (Math.cos(i*Math.PI*2/sides+offset)*cr) + cx);
+			ycor[i] = ((int) (Math.sin(i*Math.PI*2/sides+offset)*cr) + cy);
 		}
+		g.drawPolygon(xcor, ycor, sides);
+		g.setColor(Color.WHITE);
+		g.fillPolygon(xcor, ycor, sides);
 	}
 	
 	class Draggo extends MouseAdapter {
