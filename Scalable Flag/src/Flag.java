@@ -33,12 +33,9 @@ public class Flag extends JPanel {
 		int w = (int) (hlen*1.9);
 		int uh = (int) (hlen*7/13);
 		int uw = (int) (hlen*0.76);
-		//int vd = (int) (hlen*0.054);
-		//int hd = (int) (hlen*0.063);
-		int sd = (int) (hlen*0.0616);
+		double sd = (hlen*0.0616);
 		g.drawRect(sx, sy, (int)(h*1.9), h); //Main Rectangle (for guidance)
 		g.drawRect((int)(sx+h*1.9-10), sy+h-10, 20, 20); //Corner target area
-		//g.drawString("Drag here to resize the flag", (int)(sx+h*1.9-80), sy+h+25);
 		Color fill;
 		//Stripes
 		for(int i=0;i<13;i++) {
@@ -81,13 +78,13 @@ public class Flag extends JPanel {
 	 * 		  or, ir = outer radius, inner radius
 	 * @return none, but draws on screen
 	 */
-	public void drawStar(Graphics g, int cx, int cy, int or) {
+	public void drawStar(Graphics g, int cx, int cy, double or) {
 		int sides = 10;
 		int xcor[] = new int[sides];
 		int ycor[] = new int[sides];
 		double offset = Math.PI/sides;
-		int ir = (int) ((or*Math.sin(offset)/Math.sin(Math.PI*2/sides+offset)));
-		int cr;
+		double ir = ((or*Math.sin(offset)/Math.sin(Math.PI*2/sides+offset)));
+		double cr;
 		for(int i=0; i<10 ; i++) {
 			if(i%2 == 0) cr = ir;
 			else cr = or;
@@ -129,7 +126,7 @@ public class Flag extends JPanel {
 			double dl;
 			int maxd = 5;
 			if (validloc(px, py) == 1) {
-				dl=hlen*((cosform(19,10,dx,dy)*Math.sqrt(dx*dx+dy*dy))/(2.14709*hlen));
+				dl=cosform(19,10,dx,dy)*Math.sqrt(dx*dx+dy*dy);
 				if(maxd>0) {
 					if(dl>maxd) dl=maxd;
 					else if(dl<-maxd) dl=-maxd;
