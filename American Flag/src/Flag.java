@@ -2,13 +2,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.lang.*;
-import java.util.*;
-import java.util.List;
 
 public class Flag extends JPanel {
-	private final int sx = 50;
-	private final int sy = 50;
+	private static final long serialVersionUID = 1L;
+	private int sx = 50;
+	private int sy = 50;
 	private double hlen = 200;
 	Draggo draggo = new Draggo();
 	/*
@@ -40,7 +38,7 @@ public class Flag extends JPanel {
 		int sd = (int) (hlen*0.0616);
 		g.drawRect(sx, sy, (int)(h*1.9), h); //Main Rectangle (for guidance)
 		g.drawRect((int)(sx+h*1.9-10), sy+h-10, 20, 20); //Corner target area
-		g.drawString("Drag here to resize the flag", (int)(sx+h*1.9-80), sy+h+25);
+		//g.drawString("Drag here to resize the flag", (int)(sx+h*1.9-80), sy+h+25);
 		Color fill;
 		//Stripes
 		for(int i=0;i<13;i++) {
@@ -89,10 +87,7 @@ public class Flag extends JPanel {
 		int ycor[] = new int[sides];
 		double offset = Math.PI/sides;
 		int ir = (int) ((or*Math.sin(offset)/Math.sin(Math.PI*2/sides+offset)));
-		int px = (int) (Math.cos(offset)*ir) + cx;
-		int py = (int) (Math.sin(offset)*ir) + cy;
 		int cr;
-		int fx, fy;
 		for(int i=0; i<10 ; i++) {
 			if(i%2 == 0) cr = ir;
 			else cr = or;
@@ -108,6 +103,7 @@ public class Flag extends JPanel {
 		private int px, py;
 		private int x, y;
 		private double ilen;
+		private int ix, iy;
 		/*
 		 * Overwritten function to get mouse position upon clicking (in prep for dragging)
 		 * (non-Javadoc)
@@ -119,6 +115,8 @@ public class Flag extends JPanel {
 			x = px;
 			y = py;
 			ilen=hlen;
+			ix = sx;
+			iy = sy;
 		}
 		/*
 		 * Overwritten function to resize the flag upon drag
@@ -126,18 +124,22 @@ public class Flag extends JPanel {
 		 * @see java.awt.event.MouseAdapter#mouseDragged(java.awt.event.MouseEvent)
 		 */
 		public void mouseDragged(MouseEvent event) {
-
 			int dx = event.getX()-x;
 			int dy = event.getY()-y;
 			double dl;
 			int maxd = 5;
-			if ((validloc(px, py))) {
+			if (validloc(px, py) == 1) {
 				dl=hlen*((cosform(19,10,dx,dy)*Math.sqrt(dx*dx+dy*dy))/(2.14709*hlen));
 				if(maxd>0) {
 					if(dl>maxd) dl=maxd;
 					else if(dl<-maxd) dl=-maxd;
 				}
 				hlen += dl;
+				repaint();
+			}
+			else if (validloc(px, py) == 2) {
+				sx += dx;
+				sy += dy;
 				repaint();
 			}
 			x += dx;
@@ -158,11 +160,14 @@ public class Flag extends JPanel {
 		 * @params: coordinates
 		 * @return: whether or not it's a valid corner
 		 */
-		public boolean validloc(int tx, int ty) {
+		public int validloc(int tx, int ty) {
 			double cor4x = sx+ilen*1.9;
 			double cor4y = sy+ilen;
-			if(((Math.abs(tx-cor4x)<10)&&(Math.abs(ty-cor4y)<10))) return true;
-			else return false;
+			if(((Math.abs(tx-cor4x)<10)&&(Math.abs(ty-cor4y)<10))) return 1;
+			else if(((Math.abs(tx-ix)<hlen*1.9)&&(Math.abs(ty-iy)<hlen))) {
+				return 2;
+			}
+			else return 0;
 		}
 	}
 	/*
@@ -171,7 +176,7 @@ public class Flag extends JPanel {
 	 * @return nothing
 	 */
 	public static void main(String[] args) {
-		JFrame jFrame = new JFrame("Flag");
+		JFrame jFrame = new JFrame("Draggable, Resizable Flag");
 		Flag flag = new Flag();
 		flag.setDoubleBuffered(true);
 		jFrame.add(flag);
