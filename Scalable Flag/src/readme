@@ -1,0 +1,18 @@
+The flag project was very interesting because it taught me many new concepts about Java,
+particularly those used to create graphical elements and respond to mouse movements.
+My flag is created entirely using graphics (no imported pictures of any kind), and
+as far as I can tell every seems to scale (as much as it can be on the lattice).
+The flag seems mostly to scale, but when it is very small the stars start acting out and
+don't create their shapes correctly anymore - this is probably an unavoidable consequence
+of being bound to the lattice.
+
+The flag is resizable (by dragging near the lower-right corner), and it is
+also draggable (by clicking anywhere in the flag except the corner). I spent some time
+creating the resize function by using the projection of the mouse path onto the flag diagonal.
+This involved using the cosine formula for vectors, which complicated the process - however,
+eventually I got it to work and the flag resizes depending on which direction you
+move your mouse in. This makes the dragging function look a lot nicer.
+
+I haven't implemented resizing on all 4 corners of the flag, so that's one thing my flag can't do.
+Also, my dragging function still isn't perfect - the mouse goes way offsync from the corner.
+Other than those problems, I don't think my flag has any issues anymore.
