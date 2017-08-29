@@ -40,13 +40,19 @@ public class Flag extends JPanel {
 		int sd = (int) (hlen*0.0616);
 		g.drawRect(sx, sy, (int)(h*1.9), h); //Main Rectangle (for guidance)
 		g.drawRect((int)(sx+h*1.9-10), sy+h-10, 20, 20); //Corner target area
+		g.drawString("Drag here to resize the flag", (int)(sx+h*1.9-80), sy+h+25);
 		Color fill;
+		//Stripes
 		for(int i=0;i<13;i++) {
 			if(i%2 == 0) fill = Color.RED;
 			else fill = Color.WHITE;
 			drawOutRect(g, sx, (int) (sy+i*hlen/13), w, (int) (hlen/13), fill);
 		}
+		//Union
 		drawOutRect(g, sx, sy, uw, uh, Color.BLUE);
+		//in the for loop the first star looks overly small so I hardcoded this star in
+		drawStar(g, (int) (hlen*0.063)+sx, (int) (hlen*0.054)+sy, sd/2);
+		//Stars
 		for(int i=1; i<=9; i++) {
 			if(i%2 == 1) {
 				for(int j=1; j<=11; j+=2) {
