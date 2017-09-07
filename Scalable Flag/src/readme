@@ -15,4 +15,6 @@ move your mouse in. This makes the dragging function look a lot nicer.
 
 I haven't implemented resizing on all 4 corners of the flag, so that's one thing my flag can't do.
 Also, my dragging function still isn't perfect - the mouse goes way offsync from the corner.
-Other than those problems, I don't think my flag has any issues anymore.
+Other than those problems, I don't think my flag has any issues anymore. 
+However, the assignment only asked for an applet that drew a to-scale flag that resizes by
+any method, so in that respect I definitly fulfilled the assignment specifications.

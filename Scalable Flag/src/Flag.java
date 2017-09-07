@@ -124,13 +124,17 @@ public class Flag extends JPanel {
 			int dx = event.getX()-x;
 			int dy = event.getY()-y;
 			double dl;
+			boolean n = false;
 			int maxd = 5;
 			if (validloc(px, py) == 1) {
 				dl=cosform(19,10,dx,dy)*Math.sqrt(dx*dx+dy*dy);
+				if (dl<0) n = true;
 				if(maxd>0) {
 					if(dl>maxd) dl=maxd;
 					else if(dl<-maxd) dl=-maxd;
 				}
+				dl = Math.sqrt(dl*dl/4.61);
+				if (n) dl *= -1;
 				hlen += dl;
 				repaint();
 			}
@@ -169,7 +173,7 @@ public class Flag extends JPanel {
 	}
 	/*
 	 * Driver for the flag to be created
-	 * @params: args
+	 * @param: args
 	 * @return nothing
 	 */
 	public static void main(String[] args) {

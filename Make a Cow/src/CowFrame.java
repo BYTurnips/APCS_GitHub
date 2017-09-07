@@ -26,8 +26,7 @@ public class CowFrame extends JFrame {
 	 * @param range in the form of minimum and maximum
 	 * @return a random integer within that range
 	 */
-	public int randi(int min, int max) {
-		Random r=new Random();
+	public int randi(Random r, int min, int max) {
 		return (r.nextInt(max-min))+min;
 	}
 	/*
@@ -54,20 +53,20 @@ public class CowFrame extends JFrame {
 		g.setColor(Color.PINK);
 		g.fillOval(410, 120, 10, 10); //Left Nostril
 		g.fillOval(440, 120, 10, 10); //Right Nostril
-		
+		Random r=new Random(2);
 		//Drawing the spots on the cow
 		g.setColor(Color.BLACK);
 		//Main part of the body
 		for(int i=0; i<10; i++) {
-			g.fillOval(randi(70,360), randi(160,190), randi(50,80), randi(40,70));
+			g.fillOval(randi(r,70,360), randi(r,160,190), randi(r,50,80), randi(r,40,70));
 		}
 		//Edges
 		for(int i=0; i<10; i++) {
 			if(Math.random()>0.5) {
-				g.fillOval(randi(110,330), randi(120,150), randi(30,50), randi(20,40));
+				g.fillOval(randi(r,110,330), randi(r,120,150), randi(r,30,50), randi(r,20,40));
 			}
 			else {
-				g.fillOval(randi(110,360), randi(210,240), randi(30,50), randi(20,40));
+				g.fillOval(randi(r,110,360), randi(r,210,240), randi(r,30,50), randi(r,20,40));
 			}
 		}
 	}
