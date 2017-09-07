@@ -1,3 +1,8 @@
+The Flag project this readme is describing is submitted onto the my GitHub repository.
+Within the src folder in the Scalable Flag project, there should be three items:
+Flag.java (the source file), flagProject.jar (the executable), and readme.md (this readme).
+These were made as per the specifications in the assignment.
+
 The flag project was very interesting because it taught me many new concepts about Java,
 particularly those used to create graphical elements and respond to mouse movements.
 My flag is created entirely using graphics (no imported pictures of any kind), and
