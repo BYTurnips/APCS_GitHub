@@ -7,7 +7,7 @@ public class Flag extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private int sx = 50;
 	private int sy = 50;
-	private double hlen = 200;
+	private double hlen = 400;
 	Draggo draggo = new Draggo();
 	/*
 	 * Constructor of Flag that adds MouseListeners and starts initial picture
@@ -17,7 +17,7 @@ public class Flag extends JPanel {
 	public Flag () {
 		addMouseMotionListener(draggo);
 		addMouseListener(draggo);
-		setSize(700, 600);
+		setSize(1000, 1000);
 		setBackground(Color.WHITE);
 		repaint();
 	}
@@ -79,13 +79,14 @@ public class Flag extends JPanel {
 	 * @return none, but draws on screen
 	 */
 	public void drawStar(Graphics g, int cx, int cy, double or) {
-		int sides = 10;
+		int points = 5;
+		int sides = points*2;
 		int xcor[] = new int[sides];
 		int ycor[] = new int[sides];
-		double offset = Math.PI/sides;
+		double offset = (Math.PI/2) % (Math.PI*2/points);
 		double ir = ((or*Math.sin(offset)/Math.sin(Math.PI*2/sides+offset)));
 		double cr;
-		for(int i=0; i<10 ; i++) {
+		for(int i=0; i<sides ; i++) {
 			if(i%2 == 0) cr = ir;
 			else cr = or;
 			xcor[i] = ((int) (Math.cos(i*Math.PI*2/sides+offset)*cr) + cx);
@@ -182,7 +183,7 @@ public class Flag extends JPanel {
 		flag.setDoubleBuffered(true);
 		jFrame.add(flag);
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setSize(700, 600);
+		jFrame.setSize(1000, 1000);
 		jFrame.setVisible(true);
 	}
 }
