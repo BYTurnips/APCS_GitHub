@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="/Users/brion/EclipseJava/APCS_GitHub/Hivolts/Hivolts"/>
+		<item value="/Users/brion/EclipseJava/APCS_GitHub/Hivolts"/>
+		<item value="/Users/brion/EclipseJava/APCS_GitHub/Scalable Flag"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/Users/brion/EclipseJava/JJN/AP-CS/HiVolts"/>
+			<item value="/Users/brion/EclipseJava/APCS/Scalable Flag"/>
+			<item value="/Users/brion/EclipseJava/APCS/Hivolts/Hivolts"/>
+			<item value="C:\Users\Dad\Desktop\Hivolts\Hivolts"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item value="191" key="DIALOG_X_ORIGIN"/>
+		<item value="193" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
