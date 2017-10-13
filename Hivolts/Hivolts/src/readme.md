@@ -1,12 +1,3 @@
-Introduction
-How this fulfills / does not fulfill the specification
-Explanation of current errors (or anything that falls short of project specifications) and how you might fix them
-Overview of the code explaining, in broad strokes, the structure of it
-Discussion of major challenges encountered in the process of making the code
-Acknowledgements (who helped you, what resources you used etc.)
-Javadoc style comments before methods
-Single-line comments explaining algorithms where appropriate
-
 # The Hivolts Game
 
 ## Introduction:
@@ -41,3 +32,7 @@ Another very important challenge encountered was that the mhos would occasionall
 
 I had a lot of help from 2 other contributors to this project: Caleb Tan and Julius Kim. As a matter of fact, we all partitioned the work in this project to make the ambitious 2-week deadline much more approachable. Caleb implemented the smooth movement animations, found and rendered the images, and created the framework for generating elements. Julius created the KeyListener and bound it to the game controls. They were a huge help to me in finishing this project.
 I'd also like to acknowledge Jason and Justin (from Period 4) for giving the idea of having a scoreboard in the game. It is very helpful to the user and greatly enhanced the authenticity of the game.
+
+## Comparison with Projected Timeline
+
+All in all, the team adhered to the projected timeline very tightly, except in the cases of the challenges discussed above. As a result, in the last two days 2 objectives were finished simultaneously: smooth movement and mho logic. However, everything else fell into place surprisingly nicely.
