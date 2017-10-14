@@ -2,7 +2,11 @@ import java.util.Scanner;
 
 /*
  * Created by Brion Ye, uses Chinese Remainder Theorem to solve
- * systems of modular congruences (here labeled as "equations")
+ * systems of modular congruences (here labeled as "equations").
+ * I got this idea because I had wanted to learn about how to use
+ * the theorem to solve problems involving modular arithmetic, and
+ * decided that it was a mechanical process that could easily be
+ * turned into a program. Comments explain the process.
  */
 
 public class main {
