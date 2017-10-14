@@ -1,12 +1,21 @@
 import java.util.Scanner;
 
+/*
+ * Created by Brion Ye, uses Chinese Remainder Theorem to solve
+ * systems of modular congruences (here labeled as "equations")
+ */
+
 public class main {
 	//Equation class holds the two properties
 	public static class Equation {
 		int residue;
 		int modulus;
 	}
-
+	/*
+	 * Driver function takes input
+	 * @param args
+	 * @return none, but prints to screen
+	 */
 	public static void main(String args[]) {
 		Scanner s = new Scanner(System.in);
 		Equation answer = new Equation();
@@ -90,7 +99,7 @@ public class main {
 		
 		//final modulus is product of original two moduli
 		answer.modulus = leftMod * rightMod;
-		//final residue is essentailly substituted back into the orignal equation
+		//final residue is essentially substituted back into the original equation
 		answer.residue = a.residue * rightMod + rightRes;
 		return (answer);
 	}
