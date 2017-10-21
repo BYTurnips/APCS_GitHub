@@ -40,34 +40,42 @@ public class Mho extends Element {
 			
 			frame = 0;
 			if ((rightOf == 0) || (above == 0)) {
-				setD(rightOf, above);
+				if (Game.isEmpty(x + 60 * rightOf, y + 60 * above) % 2 == 0 &&
+					Game.isEmpty(x + 60 * rightOf, y + 60 * above) < 4) {
+						setD(0,0);
+				}
+				else setD(rightOf, above);
 			} else {
-				if (Game.isEmpty(x - 60 * rightOf, y - 60 * above) == 0) {
+				if (Game.isEmpty(x + 60 * rightOf, y + 60 * above) % 2 == 1) {
 					setD(rightOf, above);
-				} else if (Game.isEmpty(x + 60 * rightOf * farx, y + 60 * above * (1 - farx)) == 0) {
+				} else if (Game.isEmpty(x + 60 * rightOf * farx, y + 60 * above * (1 - farx)) % 2 == 1) {
 					setD(rightOf * farx, above * (1 - farx));
-				} else if (Game.isEmpty(x + 60 * rightOf * (1 - farx), y + 60 * above * farx) == 0) {
+				} else if (Game.isEmpty(x + 60 * rightOf * (1 - farx), y + 60 * above * farx) % 2 == 1) {
 					setD(rightOf * (1 - farx), above * farx);
 				}
-				else if (Game.isEmpty(x - 60 * rightOf, y - 60 * above) == 1) {
+				else if (Game.isEmpty(x + 60 * rightOf, y + 60 * above) == 4) {
 					setD(rightOf, above);
-				} else if (Game.isEmpty(x + 60 * rightOf * farx, y + 60 * above * (1 - farx)) == 1) {
+				} else if (Game.isEmpty(x + 60 * rightOf * farx, y + 60 * above * (1 - farx)) == 4) {
 					setD(rightOf * farx, above * (1 - farx));
-				} else if (Game.isEmpty(x + 60 * rightOf * (1 - farx), y + 60 * above * farx) == 1) {
+				} else if (Game.isEmpty(x + 60 * rightOf * (1 - farx), y + 60 * above * farx) == 4) {
 					setD(rightOf * (1 - farx), above * farx);
 				}
-				else System.out.print(Game.isEmpty(x - 60 * rightOf, y - 60 * above) + " ");
+				else setD(0, 0);
 			}
 			moving = true;
 		}
 		else move(dx, dy);
 		frame++;
-		if (frame >= 10)
+		if (frame >= 10) {
+			setD(0, 0);
 			moving = false;
+		}
 	}
 
-	private void setD(int xx, int yx) {
-		dx = xx;
-		dy = yx;
+	private void setD(int a, int b) {
+		dx = a;
+		dy = b;
+		tx = x + 60 * a;
+		ty = y + 60 * b;
 	}
 }
