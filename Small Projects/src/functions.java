@@ -1,5 +1,32 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 public class functions {
+	public static void cat(File file) {
+		RandomAccessFile input = null;
+		String line = null;
+
+		try {
+			input = new RandomAccessFile(file, "r");
+			while ((line = input.readLine()) != null) {
+				System.out.println(line);
+			}
+			return;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (input != null) {
+				try {
+					input.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	public static int recSeq(int n) {
 		if (n < 3)
 			return n;
@@ -33,7 +60,7 @@ public class functions {
 	public static void pRec(int x, int n, int tri[][]) {
 		if (x == n) {
 			for (int i = 0; i < n; i++) {
-				for (int j=n-1; j>i; j--) {
+				for (int j = n - 1; j > i; j--) {
 					System.out.print("\t");
 				}
 				for (int j = 0; j <= i; j++) {
