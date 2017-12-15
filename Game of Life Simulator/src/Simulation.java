@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Simulation extends JPanel implements ActionListener{
 	int[][] grid = new int[50][50];
-	//JButton button = new JButton("Play");
+	JButton button = new JButton("Play");
 	
 	public static void main(String args[]) {
 		Simulation sim = new Simulation();
