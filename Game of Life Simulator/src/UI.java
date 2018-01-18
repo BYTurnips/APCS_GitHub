@@ -3,10 +3,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
 public class UI {
 	static final int w = 1200, h = 750;
 	static int gridSize = min(w, h) - 40;
-
+	
 	public static void paintBackground(Graphics2D g) {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, 5000, 5000);
@@ -47,7 +50,7 @@ public class UI {
 		g.drawString(s, w - (w - min(w, h)) / 2 - temp / 2, height);
 	}
 
-	private static int min(int a, int b) {
+	static int min(int a, int b) {
 		if (a < b)
 			return a;
 		else

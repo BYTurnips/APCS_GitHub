@@ -5,6 +5,7 @@ import javax.swing.*;
 public class Simulation extends JPanel implements ActionListener{
 	int[][] grid = new int[50][50];
 	JButton button = new JButton("Play");
+	Timer timer = new Timer(100, this);
 	
 	public static void main(String args[]) {
 		Simulation sim = new Simulation();
@@ -25,6 +26,7 @@ public class Simulation extends JPanel implements ActionListener{
 		setFocusable(true);
 		requestFocusInWindow();
 		repaint();
+		timer.start();
 	}
 	public void paint(Graphics n) {
 		Graphics2D g = (Graphics2D) n;
@@ -36,6 +38,6 @@ public class Simulation extends JPanel implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		repaint();
 	}
 }
