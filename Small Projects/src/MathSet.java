@@ -1,7 +1,21 @@
 import java.util.*;
 
 public class MathSet {
-	
+	ArrayList<Integer> store;
+	MathSet() {
+		store = new ArrayList<Integer>();
+	}
+	//Adds an element if it isn't already a duplicate
+	public void add(int n) {
+		for(int i : store) {
+			if (n == i) return;
+		}
+		store.add(n);
+	}
+	//Removes an element if it exists
+	public void remove(int n) {
+		store.remove((Integer) (n));
+	}
 	//Checks if a set is empty
 	public boolean isEmpty(int[] arr) {
 		if (arr.length == 0) return true;
