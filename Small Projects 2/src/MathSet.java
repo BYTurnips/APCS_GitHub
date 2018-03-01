@@ -1,20 +1,22 @@
 import java.util.*;
 
-public class MathSet {
+public class MathSet implements Set{
 	ArrayList<Integer> store;
 	MathSet() {
 		store = new ArrayList<Integer>();
 	}
 	//Adds an element if it isn't already a duplicate
-	public void add(int n) {
+	public boolean add(Object o) {
 		for(int i : store) {
-			if (n == i) return;
+			if ((int) o == i) return true;
 		}
-		store.add(n);
+		store.add((int) o);
+		return false;
 	}
 	//Removes an element if it exists
-	public void remove(int n) {
-		store.remove((Integer) (n));
+	public boolean remove(Object o) {
+		store.remove(o);
+		return false;
 	}
 	//Checks if a set is empty
 	public boolean isEmpty(int[] arr) {
@@ -39,9 +41,9 @@ public class MathSet {
 	}
 	
 	//Takes an element and sees if it's part of a set
-	public boolean contains(int a, int[] ar) {
-		for (int i : ar) {
-			if (a == i)
+	public boolean contains(Object o) {
+		for (int i : store) {
+			if ((int) o == i)
 				return true;
 		}
 		return false;
@@ -79,5 +81,59 @@ public class MathSet {
 			ans[i] = Ans[i];
 		}
 		return ans;
+	}
+	@Override
+	public int size() {
+		return store.size();
+	}
+	@Override
+	public boolean isEmpty() {
+		return store.isEmpty();
+	}
+	@Override
+	public Iterator iterator() {
+		return store.iterator();
+	}
+	@Override
+	public Object[] toArray() {
+		return store.toArray();
+	}
+	@Override
+	public Object[] toArray(Object[] a) {
+		if(a.length>store.size()) {
+			for(int i=0;i<store.size();i++) {
+				a[i]=store.get(i);
+			}
+			a[store.size()] = null;
+		}
+		return null;
+	}
+	
+	//Collection equivalent of the single-element methods above
+	//Each element in the collection undergoes the process.
+	@Override
+	public boolean containsAll(Collection c) {
+		for(Object o: c) if(!contains(o)) return false;
+		return true;
+	}
+	@Override
+	public boolean addAll(Collection c) {
+		for(Object o: c) add(o);
+		return true;
+	}
+	//Only retains elements contained in collection c
+	@Override
+	public boolean retainAll(Collection c) {
+		for(Object o: c) if(!contains(o)) remove(o);
+		return false;
+	}
+	@Override
+	public boolean removeAll(Collection c) {
+		for(Object o: c) remove(o);
+		return false;
+	}
+	@Override
+	public void clear() {
+		store.clear();
 	}
 }
